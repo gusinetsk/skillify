@@ -1,3 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Student
+from .forms import RegistrationForm
 
-# Create your views here.
+def autorization(request):
+    return render(request, 'autorization.html')
+def registration(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration.html', {'form': form})
+def student_list(request):
+    students = Student.objects.all()
+    return render(request, 'students.html', {'students': students})
+
