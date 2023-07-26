@@ -16,8 +16,8 @@ class Person(models.Model):
     class Meta:
         abstract = True
 class Student(Person):
-    age = models.IntegerField()
-    courses = models.ManyToManyField('Course', through='Enrollment')
+    username = models.CharField(max_length=150)
+    course = models.ManyToManyField('Course', through='Enrollment')
     password = models.CharField(max_length=100)
     def __str__(self):
         return f"{self.name} {self.surname}"

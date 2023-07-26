@@ -4,12 +4,12 @@ from .forms import RegistrationForm
 
 def autorization(request):
     return render(request, 'autorization.html')
-def registration(request):
+def register_user(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('autorization')
     else:
         form = RegistrationForm()
     return render(request, 'registration.html', {'form': form})
