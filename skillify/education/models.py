@@ -9,16 +9,16 @@ SEX = [
 
 
 class Person(models.Model):
-    name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    sex = models.CharField(max_length=1,choices=SEX)
+    login = models.CharField(max_length=50,verbose_name='логин')
+    name = models.CharField(max_length=50,verbose_name='имя')
+    surname = models.CharField(max_length=50,verbose_name='фамилия')
+    sex = models.CharField(max_length=1,choices=SEX,verbose_name='пол')
     email = models.EmailField(unique=True)
     class Meta:
         abstract = True
 class Student(Person):
-    age = models.IntegerField()
-    courses = models.ManyToManyField('Course', through='Enrollment')
-    password = models.CharField(max_length=100)
+    course = models.ManyToManyField('Course', through='Enrollment',verbose_name='курс')
+    password = models.CharField(max_length=100,verbose_name='пароль')
     def __str__(self):
         return f"{self.name} {self.surname}"
 
