@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card mb-4">
+        <div class="card-header" style="background-color: #C1FFC1;">
+            <h3>Информация о студенте</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong class="text-success">Имя:</strong> {{ pupil.name }}</p>
+                    <p><strong class="text-success">Фамилия:</strong> {{ pupil.surname }}</p>
+                    <p><strong class="text-success">Класс:</strong> {{ pupil.grade_class.class_number }} класс</p>
+                    <p><strong class="text-success">Почта:</strong> {{ pupil.email }}</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ pupil.photo.url }}" alt="{{ pupil.name }}" style="max-width: 500px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" style="background-color: #C1FFC1;">
+            <h3>Общая успеваемость по предметам</h3>
+        </div>
+        <div class="card-body table-responsive table-responsive-sm" style="min-width: 500px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Предмет</th>
+                        <th>Общая успеваемость</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for achievement in grade_achievements %}
+                    <tr>
+                        <td>{{ achievement.subject.name }}</td>
+                        <td>{{ achievement.total_grade }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

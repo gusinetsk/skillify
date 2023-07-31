@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Предметы{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Предметы</h2>
+    <div class="row">
+        {% for subject in subjects %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ subject.name }}</h5>
+                    <a href="{% url 'subjects_list' pupil_id=pupil.id %}" class="btn btn-primary">Перейти к темам</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
