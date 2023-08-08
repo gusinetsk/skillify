@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 SEX = [
     ('m', 'мужской'),
@@ -54,12 +55,13 @@ class Topic(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название темы')
     description = models.CharField(max_length=200,verbose_name='Описание')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предмет')
-
+    grade_class = models.ForeignKey(GradeClass, on_delete=models.CASCADE, verbose_name='Класс',null=True, blank=True)
     def __str__(self):
         return self.name
 
 # Модель Задания
 class Assignment(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предмет', default='')
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, verbose_name='Тема')
     title = models.CharField(max_length=200, verbose_name='Название задания')
     description = models.TextField(verbose_name='Описание задания')
@@ -68,29 +70,21 @@ class Assignment(models.Model):
     def __str__(self):
         return self.title
 
-
-class Person(models.Model):
-    username = models.CharField(max_length=50,verbose_name='логин')
-    name = models.CharField(max_length=50,verbose_name='имя')
-    surname = models.CharField(max_length=50,verbose_name='фамилия')
-    sex = models.CharField(max_length=1,choices=SEX,verbose_name='пол')
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100, verbose_name='пароль')
-    photo = models.ImageField(upload_to="photo", null=True, blank=True)
-    class Meta:
-        abstract = True
 # Модель Ученика
-class Pupil(Person):
-    grade_class = models.ForeignKey(GradeClass,on_delete=models.CASCADE, verbose_name='Класс')
+
+class Pupil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE,default=User.objects.first())
+    sex = models.CharField(max_length=1, choices=SEX, verbose_name='пол')
+    photo = models.ImageField(upload_to="photo", null=True, blank=True)
+    grade_class = models.ForeignKey(GradeClass, on_delete=models.CASCADE, verbose_name='Класс')
     subjects = models.ManyToManyField(Subject, verbose_name='Предметы')
 
-    def __str__(self):
-        return self.name
 
 # Модель Учителя
-class Teacher(Person):
+class Teacher(models.Model):
+    name = models.CharField(max_length=50, verbose_name='имя')
+    surname = models.CharField(max_length=50, verbose_name='фамилия')
     subjects = models.ManyToManyField(Subject, verbose_name='Предметы')
-
     def __str__(self):
         return self.name
 

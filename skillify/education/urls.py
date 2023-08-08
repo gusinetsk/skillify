@@ -1,11 +1,14 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path('login/', views.login_view, name='login'),
-    path('registration/', views.registration, name='registration'),
-    path('pupil/<int:pupil_id>/', views.pupil_cabinet, name='pupil_cabinet'),
-    path('subjects/<int:pupil_id>/', views.subjects_list, name='subjects_list'),
+    path('registration/', views.register, name='registration'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('pupil_cabinet/', views.pupil_cabinet, name='pupil_cabinet'),
+    # path('subjects/', views.subjects_list, name='subjects_list'),
+    # path('subjects/<int:subject_id>/topics/', views.topic_list, name='topic_list'),
 ]
 
 
