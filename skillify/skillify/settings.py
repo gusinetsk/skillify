@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-s=1_x+%$gfddbt%df9!ekoxu=t&q0%v7g6jx#i*0s744fu6-u^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+
 
 
 # Application definition
@@ -158,4 +159,3 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = 'pupil_cabinet'
 
-# AUTH_USER_MODEL = 'skillify.User'

@@ -35,14 +35,13 @@ CLASS_CHOICES = [
     ('11', '11 класс')
 ]
 
-# Модель Класса (1-11 классы)
 class GradeClass(models.Model):
     class_number = models.CharField(max_length=2,choices=CLASS_CHOICES, verbose_name='Номер класса')
 
     def __str__(self):
         return f"{self.class_number} класс"
 
-# Модель Предмета
+
 class Subject(models.Model):
     name = models.CharField(max_length=100,choices=SUBJECTS, verbose_name='Название предмета')
     grade_class = models.ManyToManyField(GradeClass, verbose_name='Класс')
@@ -50,7 +49,7 @@ class Subject(models.Model):
     def __str__(self):
         return self.name
 
-# Модель Темы
+
 class Topic(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название темы')
     description = models.CharField(max_length=200,verbose_name='Описание')
@@ -59,7 +58,7 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
-# Модель Задания
+
 class Assignment(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предмет', default='')
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, verbose_name='Тема')
@@ -70,17 +69,16 @@ class Assignment(models.Model):
     def __str__(self):
         return self.title
 
-# Модель Ученика
 
 class Pupil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,default=User.objects.first())
     sex = models.CharField(max_length=1, choices=SEX, verbose_name='пол')
     photo = models.ImageField(upload_to="photo", null=True, blank=True)
     grade_class = models.ForeignKey(GradeClass, on_delete=models.CASCADE, verbose_name='Класс')
-    subjects = models.ManyToManyField(Subject, verbose_name='Предметы')
 
 
-# Модель Учителя
+
+
 class Teacher(models.Model):
     name = models.CharField(max_length=50, verbose_name='имя')
     surname = models.CharField(max_length=50, verbose_name='фамилия')
@@ -88,7 +86,7 @@ class Teacher(models.Model):
     def __str__(self):
         return self.name
 
-# Модель Отзыва и Оценки
+
 class Feedback(models.Model):
     pupil = models.ForeignKey(Pupil, on_delete=models.CASCADE, verbose_name='Ученик')
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, verbose_name='Задание')
@@ -99,7 +97,7 @@ class Feedback(models.Model):
     def __str__(self):
         return f"{self.student.name} - {self.assignment.title} - {self.grade}"
 
-# Модель Общей успеваемости по предмету для Ученика
+
 class GradeAchievement(models.Model):
     student = models.ForeignKey(Pupil, on_delete=models.CASCADE, verbose_name='Ученик')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предмет')

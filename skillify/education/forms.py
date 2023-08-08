@@ -20,6 +20,8 @@ class CustomRegistrationForm(BaseUserCreationForm):
         model = User
         fields = ('username', 'first_name','last_name', 'email','sex', 'photo', 'grade_class','password1', 'password2')
 
+
+
     def clean_password(self):
         password1 = self.cleaned_data.get('password1')
         if len(password1) < 8:
