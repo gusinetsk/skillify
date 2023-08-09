@@ -27,8 +27,6 @@ DEBUG = True
 
 
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -90,13 +88,13 @@ WSGI_APPLICATION = 'skillify.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME",'skillify'),
-        'USER': os.environ.get("DB_USER",'skillify'),
-        'PASSWORD': os.environ.get("DB_PASSWORD",'skillify'),
+        'NAME': os.environ.get("DB_NAME",'skill'),
+        'USER': os.environ.get("DB_USER",'skill'),
+        'PASSWORD': os.environ.get("DB_PASSWORD",'skill'),
         'HOST': os.environ.get("DB_HOST",'127.0.0.1'),
         'PORT': os.environ.get("DB_PORT",'5432'),
         "TEST": {
-            "NAME": "test_skillify",
+            "NAME": "test_skill",
         },
     }
 }

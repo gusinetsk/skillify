@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 SEX = [
     ('m', 'мужской'),
@@ -35,12 +35,42 @@ CLASS_CHOICES = [
     ('11', '11 класс')
 ]
 
+class User(AbstractUser):
+    first_name = models.CharField(max_length=30, verbose_name='Имя')
+    last_name = models.CharField(max_length=30, verbose_name='Фамилия')
+    email = models.EmailField(unique=True, verbose_name='Email')
+    photo = models.ImageField(upload_to="photo", null=True, blank=True, verbose_name='Фото')
+    sex = models.CharField(max_length=1, choices=SEX, verbose_name='Пол')
+    is_student = models.BooleanField(default=False)
+    is_teacher = models.BooleanField(default=False)
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name='Группы',
+        blank=True,
+        related_name='education_users'
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name='Права доступа',
+        blank=True,
+        related_name='education_users'
+    )
+
+    def __str__(self):
+        return self.username
+
 class GradeClass(models.Model):
     class_number = models.CharField(max_length=2,choices=CLASS_CHOICES, verbose_name='Номер класса')
 
     def __str__(self):
         return f"{self.class_number} класс"
 
+class Pupil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='pupil',default=None)
+    grade_class = models.ForeignKey(GradeClass, on_delete=models.CASCADE, verbose_name='Класс')
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
 
 class Subject(models.Model):
     name = models.CharField(max_length=100,choices=SUBJECTS, verbose_name='Название предмета')
@@ -70,21 +100,11 @@ class Assignment(models.Model):
         return self.title
 
 
-class Pupil(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,default=User.objects.first())
-    sex = models.CharField(max_length=1, choices=SEX, verbose_name='пол')
-    photo = models.ImageField(upload_to="photo", null=True, blank=True)
-    grade_class = models.ForeignKey(GradeClass, on_delete=models.CASCADE, verbose_name='Класс')
-
-
-
-
 class Teacher(models.Model):
-    name = models.CharField(max_length=50, verbose_name='имя')
-    surname = models.CharField(max_length=50, verbose_name='фамилия')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='teacher',default=None)
     subjects = models.ManyToManyField(Subject, verbose_name='Предметы')
     def __str__(self):
-        return self.name
+        return f"{self.user.first_name} {self.user.last_name}"
 
 
 class Feedback(models.Model):

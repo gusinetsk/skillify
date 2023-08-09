@@ -10,19 +10,8 @@ def register(request):
     if request.method == 'POST':
         form = CustomRegistrationForm(request.POST)
         if form.is_valid():
-            user = User.objects.create_user(
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password1'],
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name']
-            )
-            pupil = Pupil.objects.create(
-                user=user,
-                sex=form.cleaned_data['sex'],
-                photo=form.cleaned_data['photo'],
-                grade_class=form.cleaned_data['grade_class']
-            )
-
+            user = form.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('login')
     else:
         form = CustomRegistrationForm()
