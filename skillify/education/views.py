@@ -18,32 +18,32 @@ def register(request):
 
     return render(request, 'registration.html', {'form': form})
 
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+        password1 = request.POST.get('password1')
+        user = authenticate(request, username=username, password1=password1)
         if user is not None:
+            print("User authenticated:", user)
             login(request, user)
             return redirect('pupil_cabinet')
         else:
+            print("Authentication failed for username:", username)
             error_message = "Неверное имя пользователя или пароль."
             return render(request, 'login.html', {'error_message': error_message})
     else:
         form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})
+
 @login_required
 def profile_view(request):
-    try:
-        pupil = request.user.pupil
-    except Pupil.DoesNotExist:
-        pupil = None
-
-    return render(request, 'pupil_cabinet.html', {'pupil': pupil})
+    user = request.user
+    return render(request, 'pupil_cabinet.html', {'user': user})
 
 def subjects_list(request):
-    pupil = Pupil.objects.all
-    class_number = pupil.grade_class.class_number
+    user = User.objects.all
+    class_number = user.grade_class.class_number
     if class_number == '1' or class_number == '2':
         subjects = Subject.objects.filter(name__in=['бел.яз', 'рус.яз', 'бел.лит', 'рус.лит', 'матем'])
     if class_number == '3' or class_number == '4':
@@ -58,7 +58,7 @@ def subjects_list(request):
         subjects = Subject.objects.filter(name__in=['бел.яз', 'рус.яз', 'англ.яз', 'бел.лит', 'рус.лит', 'матем', 'ист',
                                                     'био', 'гео', 'инф','физ','хим', 'общ'])
     context = {
-        'pupil': pupil,
+        'user': user,
         'subjects': subjects,
     }
     return render(request, 'subjects_list.html', context)

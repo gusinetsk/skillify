@@ -10,11 +10,9 @@ class PupilAuthenticationForm(AuthenticationForm):
 
 
 class CustomRegistrationForm(UserCreationForm):
-    grade_class = forms.ModelChoiceField(queryset=GradeClass.objects.all(), label='Класс')
-
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'grade_class', 'sex', 'photo')
+        fields = ('username', 'first_name', 'last_name', 'email', 'grade_class', 'password1', 'password2', 'grade_class', 'sex', 'photo')
 
     def clean_password(self):
         password1 = self.cleaned_data.get('password1')

@@ -157,3 +157,4 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = 'pupil_cabinet'
 
+
