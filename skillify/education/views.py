@@ -11,30 +11,34 @@ def register(request):
         form = CustomRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user.photo = request.FILES.get('photo')
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.email = form.cleaned_data['email']
+            user.grade_class = form.cleaned_data['grade_class']
+            user.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('login')
     else:
         form = CustomRegistrationForm()
 
-    return render(request, 'registration.html', {'form': form})
+    return render(request, 'registration/registration.html', {'form': form})
 
 
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        password1 = request.POST.get('password1')
-        user = authenticate(request, username=username, password1=password1)
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
         if user is not None:
-            print("User authenticated:", user)
             login(request, user)
             return redirect('pupil_cabinet')
         else:
-            print("Authentication failed for username:", username)
             error_message = "Неверное имя пользователя или пароль."
-            return render(request, 'login.html', {'error_message': error_message})
+            return render(request, 'registration/login.html', {'error_message': error_message})
     else:
         form = AuthenticationForm()
-        return render(request, 'login.html', {'form': form})
+        return render(request, 'registration/login.html', {'form': form})
 
 @login_required
 def profile_view(request):

@@ -48,7 +48,12 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, verbose_name='Email')
     photo = models.ImageField(upload_to="photo", null=True, blank=True, verbose_name='Фото')
     sex = models.CharField(max_length=1, choices=SEX, verbose_name='Пол')
-    grade_class = models.ForeignKey(GradeClass, on_delete=models.CASCADE, verbose_name='Класс', default='')
+    grade_class = models.ForeignKey(
+        GradeClass,
+        on_delete=models.PROTECT,
+        db_column='class_number',
+        verbose_name='Номер класса'
+    )
     groups = models.ManyToManyField(
         Group,
         verbose_name='Группы',

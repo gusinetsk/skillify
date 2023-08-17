@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-ru">
 <head>
@@ -17,16 +16,20 @@
           <h3>Авторизация пользователя</h3>
         </div>
         <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-
+          {% csrf_token %}
+          {% if messages %}
+            <div class="alert alert-danger">
+              <strong>Ошибка!</strong> {{ messages }}
+            </div>
+          {% endif %}
+          {{ form|crispy }}
           <button type="submit" class="btn btn-primary btn-block">Войти</button>
           <hr>
           <p class="text-center">Еще не зарегистрированы?</p>
           <div class="d-flex justify-content-center">
-          <a href="{% url 'registration' %}" class="btn btn-success btn-block">Зарегистрироваться</a>
-            </div>
-        </div>
+            <a href="{% url 'registration' %}" class="btn btn-success btn-block">Зарегистрироваться</a>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -37,4 +40,3 @@
 
 </body>
 </html>
-

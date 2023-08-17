@@ -88,13 +88,13 @@ WSGI_APPLICATION = 'skillify.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME",'skill'),
-        'USER': os.environ.get("DB_USER",'skill'),
-        'PASSWORD': os.environ.get("DB_PASSWORD",'skill'),
+        'NAME': os.environ.get("DB_NAME",'skillify'),
+        'USER': os.environ.get("DB_USER",'skillify'),
+        'PASSWORD': os.environ.get("DB_PASSWORD",'skillify'),
         'HOST': os.environ.get("DB_HOST",'127.0.0.1'),
         'PORT': os.environ.get("DB_PORT",'5432'),
         "TEST": {
-            "NAME": "test_skill",
+            "NAME": "test_skillify",
         },
     }
 }
@@ -156,5 +156,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_REDIRECT_URL = 'pupil_cabinet'
+AUTH_USER_MODEL = 'education.User'
 
 
