@@ -45,8 +45,9 @@ def profile_view(request):
     user = request.user
     return render(request, 'pupil_cabinet.html', {'user': user})
 
+
 def subjects_list(request):
-    user = User.objects.all
+    user = request.user
     class_number = user.grade_class.class_number
     if class_number == '1' or class_number == '2':
         subjects = Subject.objects.filter(name__in=['бел.яз', 'рус.яз', 'бел.лит', 'рус.лит', 'матем'])
@@ -55,10 +56,10 @@ def subjects_list(request):
     if class_number == '5' or class_number == '6':
         subjects = Subject.objects.filter(name__in=['бел.яз', 'рус.яз', 'англ.яз', 'бел.лит', 'рус.лит', 'матем', 'ист',
                                                     'био', 'гео', 'инф'])
-    if class_number == '7' :
+    if class_number == '7' or class_number == '8':
         subjects = Subject.objects.filter(name__in=['бел.яз', 'рус.яз', 'англ.яз', 'бел.лит', 'рус.лит', 'матем', 'ист',
                                                     'био', 'гео', 'инф','физ', 'хим'])
-    if class_number in ('8', '9', '10', '11'):
+    if class_number in ('9', '10', '11'):
         subjects = Subject.objects.filter(name__in=['бел.яз', 'рус.яз', 'англ.яз', 'бел.лит', 'рус.лит', 'матем', 'ист',
                                                     'био', 'гео', 'инф','физ','хим', 'общ'])
     context = {

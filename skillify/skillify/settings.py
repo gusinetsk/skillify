@@ -157,5 +157,7 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = 'pupil_cabinet'
 AUTH_USER_MODEL = 'education.User'
+LOGOUT_REDIRECT_URL = 'login'
+
 
 

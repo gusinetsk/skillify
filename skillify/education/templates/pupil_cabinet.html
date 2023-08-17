@@ -15,11 +15,11 @@
                 <div class="col-md-6">
                     <p><strong class="text-success">Имя:</strong> {{ user.first_name }}</p>
                     <p><strong class="text-success">Фамилия:</strong> {{ user.last_name }}</p>
-                    <p><strong class="text-success">Класс:</strong> {{ pupil.grade_class.class_number }} класс</p>
+                    <p><strong class="text-success">Класс:</strong> {{ user.grade_class.class_number }} класс</p>
                     <p><strong class="text-success">Почта:</strong> {{ user.email }}</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ user.photo }}" alt="{{ user.first_name }}" style="max-width: 500px;">
+                    <img src="{{ user.photo.url }}" alt="{{ user.first_name }}" style="max-width: 500px;">
                 </div>
             </div>
         </div>
