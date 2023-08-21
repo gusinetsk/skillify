@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Задания по предмету - {{ subject.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Задания по предмету: {{ subject.name }}</h2>
+
+    {% if assignments %}
+    <div class="row">
+        {% for assignment in assignments %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ assignment.title }}</h5>
+                    <p class="card-text">{{ assignment.deadline }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>На данный момент нет доступных заданий по этому предмету и классу.</p>
+    {% endif %}
+</div>
+{% endblock %}

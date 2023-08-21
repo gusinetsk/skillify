@@ -13,3 +13,16 @@
 .pastel-green-background {
   color: #80c38f; /* Замените этот цвет на пастельно зеленый, который вам нравится */
 }
+
+
+
+.card-img-container {
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    object-fit: cover;
+    width: 80%;
+    height: 80%;
+}

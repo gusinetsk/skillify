@@ -8,7 +8,11 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('pupil_cabinet/', views.profile_view, name='pupil_cabinet'),
     path('subjects/', views.subjects_list, name='subjects_list'),
-    path('subjects/<int:subject_id>/topics/', views.topic_list, name='topic_list'),
+    path('subjects/<int:subject_id>/assignments/', views.assignments_list, name='assignments_list'),
+    path('teachers/', views.all_teachers, name='all_teachers'),
+    path('write_to_teacher/<int:teacher_id>/', views.write_to_teacher, name='write_to_teacher'),
+
+
 ]
 
 

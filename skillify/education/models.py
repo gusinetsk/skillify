@@ -77,25 +77,27 @@ class Subject(models.Model):
         return self.name
 
 
-class Topic(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название темы')
-    description = models.CharField(max_length=200,verbose_name='Описание')
+class Teacher(models.Model):
+    first_name = models.CharField(max_length=30, verbose_name='Имя')
+    last_name = models.CharField(max_length=30, verbose_name='Фамилия')
+    middle_name = models.CharField(max_length=30, verbose_name='Отчество')
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предмет')
-    grade_class = models.ForeignKey(GradeClass, on_delete=models.CASCADE, verbose_name='Класс',null=True, blank=True)
+    photo = models.ImageField(upload_to="teachers", null=True, blank=True, verbose_name='Фото')
     def __str__(self):
-        return self.name
+        return f"{self.first_name} {self.middle_name}"
 
 
 class Assignment(models.Model):
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предмет', default='')
-    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, verbose_name='Тема')
     title = models.CharField(max_length=200, verbose_name='Название задания')
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='Предмет', default='')
+    grade_class = models.ManyToManyField(GradeClass, verbose_name='Класс')
+    teacher = models.ForeignKey(Teacher,on_delete=models.SET_NULL,null=True,blank=True, verbose_name='Учитель',default='')
     description = models.TextField(verbose_name='Описание задания')
     deadline = models.DateTimeField(verbose_name='Крайний срок выполнения')
 
+
     def __str__(self):
         return self.title
-
 
 
 class Feedback(models.Model):
@@ -116,3 +118,9 @@ class GradeAchievement(models.Model):
 
     def __str__(self):
         return f"{self.user.last_name} - {self.subject.name} - {self.total_grade}"
+
+
+class Schedule(models.Model):
+    day = models.CharField(max_length=20)
+    number = models.CharField(max_length=10)
+    subject = models.ManyToManyField(Subject,max_length=100)

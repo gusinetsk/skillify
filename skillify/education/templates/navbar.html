@@ -12,7 +12,13 @@
           <a href="{% url 'subjects_list'  %}" class="nav-link">Предметы</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Задания</a>
+          <a href="{% url 'subjects_list'  %}" class="nav-link">Расписание</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'all_teachers'  %}">Учителя</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'subjects_list'  %}" class="nav-link">Успеваемость</a>
         </li>
       </ul>
       <a class="navbar-text nav-link text-white" href="{% url 'logout' %}">Выйти</a>

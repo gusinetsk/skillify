@@ -69,13 +69,16 @@ def subjects_list(request):
     return render(request, 'subjects_list.html', context)
 
 
-def topic_list(request, subject_id):
-    subject = get_object_or_404(Subject, id=subject_id)
-    topics = Topic.objects.filter(subject=subject)
+def assignments_list(request, subject_id):
+    user = request.user
+    subject = get_object_or_404(Subject, pk=subject_id)
+    assignments = Assignment.objects.filter(subject=subject, grade_class=user.grade_class)
+    return render(request, 'assignments_list.html', {'user': user, 'subject': subject, 'assignments': assignments})
 
-    context = {
-        'subject': subject,
-        'topics': topics,
-    }
+def all_teachers(request):
+    teachers = Teacher.objects.all()
+    return render(request, 'teachers.html', {'teachers': teachers})
 
-    return render(request, 'topic_list.html', context)
+def write_to_teacher(request, teacher_id):
+    teacher = Teacher.objects.get(id=teacher_id)
+    return render(request, 'write_to_teacher.html', {'teacher': teacher})

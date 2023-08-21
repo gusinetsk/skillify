@@ -4,7 +4,7 @@ from .models import *
 admin.site.register(User)
 admin.site.register(GradeClass)
 admin.site.register(Subject)
-admin.site.register(Topic)
+admin.site.register(Teacher)
 admin.site.register(Assignment)
 admin.site.register(Feedback)
 admin.site.register(GradeAchievement)
