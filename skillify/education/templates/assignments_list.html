@@ -13,6 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ assignment.title }}</h5>
                     <p class="card-text">{{ assignment.deadline }}</p>
+                    <a href="{% url 'execute_assignment' assignment.id %}" class="btn btn-primary">Выполнить задание</a>
                 </div>
             </div>
         </div>

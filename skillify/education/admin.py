@@ -8,4 +8,5 @@ admin.site.register(Teacher)
 admin.site.register(Assignment)
 admin.site.register(Feedback)
 admin.site.register(GradeAchievement)
+admin.site.register(Schedule)
 # Register your models here.

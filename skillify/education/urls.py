@@ -11,6 +11,7 @@ urlpatterns = [
     path('subjects/<int:subject_id>/assignments/', views.assignments_list, name='assignments_list'),
     path('teachers/', views.all_teachers, name='all_teachers'),
     path('write_to_teacher/<int:teacher_id>/', views.write_to_teacher, name='write_to_teacher'),
+    # path('execute_assignment/<int:assignment_id>/', views.execute_assignment, name='execute_assignment'),
 
 
 ]

@@ -75,6 +75,36 @@ def assignments_list(request, subject_id):
     assignments = Assignment.objects.filter(subject=subject, grade_class=user.grade_class)
     return render(request, 'assignments_list.html', {'user': user, 'subject': subject, 'assignments': assignments})
 
+
+
+def submit_assignment(request, assignment_id):
+    if request.method == 'POST':
+        assignment = Assignment.objects.get(id=assignment_id)
+        answer = request.POST.get('answer')
+        file = request.FILES.get('file')
+        image = request.FILES.get('image')
+
+        submission = StudentSubmission.objects.create(
+            assignment=assignment,
+            student=request.user,
+            answer=answer,
+            file=file,
+            image=image
+        )
+
+        # Дополнительные действия, например, отправка уведомления учителю
+
+        return redirect('assignment_detail', assignment_id=assignment_id)
+
+    else:
+        assignment = Assignment.objects.get(id=assignment_id)
+        context = {
+            'assignment': assignment
+        }
+        return render(request, 'submit_assignment.html', context)
+
+
+
 def all_teachers(request):
     teachers = Teacher.objects.all()
     return render(request, 'teachers.html', {'teachers': teachers})

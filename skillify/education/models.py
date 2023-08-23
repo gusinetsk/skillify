@@ -34,6 +34,13 @@ CLASS_CHOICES = [
     ('10', '10 класс'),
     ('11', '11 класс')
 ]
+DAY_CHOICES = [
+    ("ПН", "Понедельник"),
+    ("ВТ", "Вторник"),
+    ('СР','Среда'),
+    ("ЧТ", "Четверг"),
+    ("ПТ", "Пятница")
+]
 
 class GradeClass(models.Model):
     class_number = models.CharField(max_length=2,choices=CLASS_CHOICES, verbose_name='Номер класса')
@@ -121,6 +128,26 @@ class GradeAchievement(models.Model):
 
 
 class Schedule(models.Model):
-    day = models.CharField(max_length=20)
-    number = models.CharField(max_length=10)
-    subject = models.ManyToManyField(Subject,max_length=100)
+    day = models.CharField(max_length=100, choices=DAY_CHOICES)
+    class_number = models.CharField(max_length=100, choices=CLASS_CHOICES,default='')
+    lesson_number = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(7)])
+    subject = models.ManyToManyField(Subject, max_length=100, choices=SUBJECTS, verbose_name='Название предмета')
+
+    def __str__(self):
+        return f"{self.day} - {self.lesson_number} - {self.subject}"
+
+
+class StudentSubmission(models.Model):
+    assignments = models.ManyToManyField(Assignment, related_name='submissions', verbose_name='Задания')
+    student = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Ученик')
+    answer = models.TextField(blank=True, verbose_name='Текстовый ответ')
+    file = models.FileField(upload_to='submissions/files/', blank=True, null=True, verbose_name='Файл')
+    image = models.ImageField(upload_to='submissions/images/', blank=True, null=True, verbose_name='Изображение')
+    submitted_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время отправки')
+
+    class Meta:
+        verbose_name = 'Отправка ученика'
+        verbose_name_plural = 'Отправки учеников'
+
+    def __str__(self):
+        return f'Отправка от {self.student.username} ({self.submitted_at})'

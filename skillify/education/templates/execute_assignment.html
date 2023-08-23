@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Выполнение задания - {{ assignment.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Выполнение задания: {{ assignment.title }}</h2>
+
+    <div class="mb-3">
+
+        <p>{{ assignment.description }}</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="answer" class="form-label">Ответ на задание</label>
+            <textarea class="form-control" id="answer" name="answer" rows="4"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Загрузить файл</label>
+            <input type="file" class="form-control" id="file" name="file">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Загрузить изображение</label>
+            <input type="file" class="form-control" id="image" name="image">
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock %}
