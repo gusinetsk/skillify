@@ -5,6 +5,9 @@ from .models import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
+import json
+from django.http import JsonResponse
+from pprint import pprint
 
 
 def register(request):
@@ -177,9 +180,17 @@ def message_sent(request):
     return render(request, 'message_sent.html')
 
 
+import json
+from django.shortcuts import render
 
 
 
+def schedule_view(request):
+    with open('schedule_data.json', 'r', encoding='utf-8') as json_file:
+        data = json.load(json_file)
+        schedule = data.get('5', [])
+
+    return render(request, 'schedule_json.html', {'schedule': schedule})
 
 
 

@@ -1,0 +1,1438 @@
+{
+    "5": [
+        {
+            "day": "Понедельник",
+            "lesson_number": "1",
+            "subject": "труд. об.",
+            "room": "109/111"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "2",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "3",
+            "subject": "ин. яз.",
+            "room": "204/205/304"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "4",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "5",
+            "subject": "бел. яз.",
+            "room": "308"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "6",
+            "subject": "русск.",
+            "room": "306"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "7",
+            "subject": "кл. час",
+            "room": ""
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "1",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "2",
+            "subject": "русск. яз.",
+            "room": "306"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "3",
+            "subject": "история",
+            "room": "303"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "4",
+            "subject": "русск. лит.",
+            "room": "306"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "5",
+            "subject": "ин. яз.",
+            "room": "204/205/304"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "6",
+            "subject": "",
+            "room": ""
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "1",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "2",
+            "subject": "ин. яз.",
+            "room": "204/205/304"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "3",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "4",
+            "subject": "русск.",
+            "room": "306"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "5",
+            "subject": "бел. яз.",
+            "room": "308"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "6",
+            "subject": "бел. лит.",
+            "room": "308"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "1",
+            "subject": "ЧЗС",
+            "room": "с/з"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "2",
+            "subject": "ЧиМ",
+            "room": "313"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "3",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "4",
+            "subject": "ин. яз.",
+            "room": "204/205/304"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "5",
+            "subject": "история",
+            "room": "303"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "6",
+            "subject": "русск.",
+            "room": "306"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "1",
+            "subject": "ОБЖ",
+            "room": "203"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "2",
+            "subject": "бел. яз.",
+            "room": "308"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "3",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "4",
+            "subject": "бел. лит.",
+            "room": "308"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "5",
+            "subject": "ин. яз.",
+            "room": "204/205/304"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "6",
+            "subject": "искусство",
+            "room": "220"
+        }
+    ],
+    "6": [
+        {
+            "day": "Понедельник",
+            "lesson_number": "1",
+            "subject": "история",
+            "room": "303"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "2",
+            "subject": "математика",
+            "room": "117"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "3",
+            "subject": "ЧЗС",
+            "room": "с/з"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "4",
+            "subject": "русск.",
+            "room": "307"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "5",
+            "subject": "бел.",
+            "room": "206"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "6",
+            "subject": "информ.",
+            "room": "305/317"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "1",
+            "subject": "труд. об.",
+            "room": "109/111"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "2",
+            "subject": "труд. об.",
+            "room": "109/111"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "3",
+            "subject": "математика",
+            "room": "117"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "4",
+            "subject": "русск.",
+            "room": "307"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "5",
+            "subject": "ин. яз.",
+            "room": "119/302/305"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "6",
+            "subject": "бел.",
+            "room": "206"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "7",
+            "subject": "кл. час",
+            "room": ""
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "1",
+            "subject": "география",
+            "room": "313"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "2",
+            "subject": "ин. яз.",
+            "room": "119/302/315"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "3",
+            "subject": "русск.",
+            "room": "307"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "4",
+            "subject": "математика",
+            "room": "117"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "5",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "6",
+            "subject": "",
+            "room": ""
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "1",
+            "subject": "математика",
+            "room": "117"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "2",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "3",
+            "subject": "бел. яз.",
+            "room": "206"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "4",
+            "subject": "бел. лит.",
+            "room": "206"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "5",
+            "subject": "русск. яз.",
+            "room": "307"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "6",
+            "subject": "русск. лит.",
+            "room": "307"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "1",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "2",
+            "subject": "искусство",
+            "room": "220"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "3",
+            "subject": "математика",
+            "room": "117"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "4",
+            "subject": "история",
+            "room": "303"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "5",
+            "subject": "ин. яз.",
+            "room": "119/207/302"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "6",
+            "subject": "бел.",
+            "room": "206"
+        }
+    ],
+    "7": [
+        {
+            "day": "Понедельник",
+            "lesson_number": "1",
+            "subject": "бел. лит.",
+            "room": "202"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "2",
+            "subject": "бел. яз.",
+            "room": "202"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "3",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "4",
+            "subject": "история",
+            "room": "303"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "5",
+            "subject": "информ.",
+            "room": "305/317"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "6",
+            "subject": "математика",
+            "room": "208"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "1",
+            "subject": "математика",
+            "room": "208"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "2",
+            "subject": "физика",
+            "room": "220"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "3",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "4",
+            "subject": "бел.",
+            "room": "202"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "5",
+            "subject": "искусство",
+            "room": "313"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "6",
+            "subject": "ин. яз.",
+            "room": "302/304"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "1",
+            "subject": "ин. яз.",
+            "room": "302/304"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "2",
+            "subject": "математика",
+            "room": "208"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "3",
+            "subject": "география",
+            "room": "313"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "4",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "5",
+            "subject": "биология",
+            "room": "220"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "6",
+            "subject": "бел.",
+            "room": "202"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "1",
+            "subject": "русск. лит.",
+            "room": "306"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "2",
+            "subject": "русск. яз.",
+            "room": "306"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "3",
+            "subject": "труд. об.",
+            "room": "109/111"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "4",
+            "subject": "труд. об.",
+            "room": "109/111"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "5",
+            "subject": "физика",
+            "room": "220"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "6",
+            "subject": "ЧЗС",
+            "room": "с/з"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "7",
+            "subject": "математика",
+            "room": "208"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "1",
+            "subject": "русск. яз.",
+            "room": "306"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "2",
+            "subject": "математика",
+            "room": "208"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "3",
+            "subject": "история",
+            "room": "303"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "4",
+            "subject": "ин. яз.",
+            "room": "302/304"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "5",
+            "subject": "биология",
+            "room": "220"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "6",
+            "subject": "кл. час",
+            "room": ""
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        }
+    ],
+    "8": [
+        {
+            "day": "Понедельник",
+            "lesson_number": "1",
+            "subject": "русск.",
+            "room": "203"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "2",
+            "subject": "искусство",
+            "room": "303"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "3",
+            "subject": "география",
+            "room": "313"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "4",
+            "subject": "ин. яз.",
+            "room": "204/205/220"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "5",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "6",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "1",
+            "subject": "физика",
+            "room": "220"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "2",
+            "subject": "русск. лит.",
+            "room": "307"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "3",
+            "subject": "русск. яз.",
+            "room": "307"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "4",
+            "subject": "труд. об.",
+            "room": "109/111"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "5",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "6",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "1",
+            "subject": "ин. яз.",
+            "room": "204/205/218"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "2",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "3",
+            "subject": "история",
+            "room": "203"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "4",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "5",
+            "subject": "информ.",
+            "room": "305/317"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "6",
+            "subject": "бел. яз.",
+            "room": "207"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "7",
+            "subject": "кл. час",
+            "room": ""
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "1",
+            "subject": "русск.",
+            "room": "203"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "2",
+            "subject": "физика",
+            "room": "220"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "3",
+            "subject": "бел. яз.",
+            "room": "207"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "4",
+            "subject": "бел. лит.",
+            "room": "207"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "5",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "6",
+            "subject": "ин. яз.",
+            "room": "204/205/302"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "7",
+            "subject": "ЧЗС",
+            "room": "с/з"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "1",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "2",
+            "subject": "история",
+            "room": "203"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "3",
+            "subject": "география",
+            "room": "313"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "4",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "5",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "6",
+            "subject": "математика",
+            "room": "301"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        }
+    ],
+    "9": [
+        {
+            "day": "Понедельник",
+            "lesson_number": "1",
+            "subject": "русск. лит.",
+            "room": "307"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "2",
+            "subject": "русск. яз.",
+            "room": "307"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "3",
+            "subject": "история",
+            "room": "315"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "4",
+            "subject": "бел.",
+            "room": "207"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "5",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "6",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "1",
+            "subject": "физика",
+            "room": "218"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "2",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "3",
+            "subject": "бел.",
+            "room": "207"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "4",
+            "subject": "ин. яз.",
+            "room": "119/204"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "5",
+            "subject": "история",
+            "room": "315"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "6",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "7",
+            "subject": "ВОВ",
+            "room": "315"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "1",
+            "subject": "информ.",
+            "room": "305/317"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "2",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "3",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "4",
+            "subject": "бел. яз.",
+            "room": "207"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "5",
+            "subject": "бел. лит.",
+            "room": "207"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "6",
+            "subject": "ЧЗС",
+            "room": "с/з"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "7",
+            "subject": "кл. час",
+            "room": ""
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "1",
+            "subject": "история",
+            "room": "315"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "2",
+            "subject": "ин. яз.",
+            "room": "119/204"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "3",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "4",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "5",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "6",
+            "subject": "физика",
+            "room": "218"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "7",
+            "subject": "труд. об.",
+            "room": "109/111"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "1",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "2",
+            "subject": "обществовед.",
+            "room": "315"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "3",
+            "subject": "ин. яз.",
+            "room": "119/204"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "4",
+            "subject": "география",
+            "room": "313"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "5",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "6",
+            "subject": "русск. яз.",
+            "room": "307"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "7",
+            "subject": "",
+            "room": ""
+        }
+    ],
+    "10": [
+        {
+            "day": "Понедельник",
+            "lesson_number": "1",
+            "subject": "ин. яз.",
+            "room": "204/205/220/304"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "2",
+            "subject": "география",
+            "room": "313"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "3",
+            "subject": "бел. яз.",
+            "room": "206"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "4",
+            "subject": "бел. лит.",
+            "room": "206"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "5",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "6",
+            "subject": "история",
+            "room": "303"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "7",
+            "subject": "математика",
+            "room": "208"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "1",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "2",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "3",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "4",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "5",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "6",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "7",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "1",
+            "subject": "история",
+            "room": "303"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "2",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "3",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "4",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "5",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "6",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "7",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "1",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "2",
+            "subject": "русск. яз.",
+            "room": "217"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "3",
+            "subject": "русск. лит.",
+            "room": "217"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "4",
+            "subject": "математика",
+            "room": "208"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "5",
+            "subject": "ЧЗС",
+            "room": "с/з"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "6",
+            "subject": "ДиМП",
+            "room": "117/203"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "7",
+            "subject": "обществовед.",
+            "room": "303"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "1",
+            "subject": "русск. лит.",
+            "room": "217"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "2",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "3",
+            "subject": "физика",
+            "room": "218"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "4",
+            "subject": "бел. яз.",
+            "room": "206"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "5",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "6",
+            "subject": "информ.",
+            "room": "305/317"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "7",
+            "subject": "математика",
+            "room": "208"
+        }
+    ],
+    "11": [
+        {
+            "day": "Понедельник",
+            "lesson_number": "1",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "2",
+            "subject": "история",
+            "room": "315"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "3",
+            "subject": "русск. яз.",
+            "room": "307"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "4",
+            "subject": "бел. яз.",
+            "room": "202"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "5",
+            "subject": "бел. лит.",
+            "room": "202"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "6",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Понедельник",
+            "lesson_number": "7",
+            "subject": "география",
+            "room": "313"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "1",
+            "subject": "ин. яз.",
+            "room": "204/205/304/313"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "2",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "3",
+            "subject": "история",
+            "room": "315"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "4",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "5",
+            "subject": "химия",
+            "room": "319"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "6",
+            "subject": "физика",
+            "room": "218"
+        },
+        {
+            "day": "Вторник",
+            "lesson_number": "7",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "1",
+            "subject": "УПК",
+            "room": null
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "2",
+            "subject": "черчение",
+            "room": ""
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "3",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "4",
+            "subject": "ин. яз.",
+            "room": "204/205/218/304"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "5",
+            "subject": "математика",
+            "room": "208"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "6",
+            "subject": "физика",
+            "room": "218"
+        },
+        {
+            "day": "Среда",
+            "lesson_number": "7",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "1",
+            "subject": "русск. лит.",
+            "room": "307"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "2",
+            "subject": "русск. яз.",
+            "room": "307"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "3",
+            "subject": "физ. к. и зд.",
+            "room": "с/з"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "4",
+            "subject": "бел. лит.",
+            "room": "202"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "5",
+            "subject": "ин. яз.",
+            "room": "117/204/205/304"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "6",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Четверг",
+            "lesson_number": "7",
+            "subject": "ДиМП",
+            "room": "117/203"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "1",
+            "subject": "информ.",
+            "room": "305/317"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "2",
+            "subject": "физика",
+            "room": "218"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "3",
+            "subject": "математика",
+            "room": "201"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "4",
+            "subject": "обществовед.",
+            "room": "315"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "5",
+            "subject": "астрономия",
+            "room": "218"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "6",
+            "subject": "биология",
+            "room": "316"
+        },
+        {
+            "day": "Пятница",
+            "lesson_number": "7",
+            "subject": "ЧЗС",
+            "room": "с/з"
+        }
+    ]
+}

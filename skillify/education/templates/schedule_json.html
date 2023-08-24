@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>День недели</th>
+            <th>№ урока</th>
+            <th>Предмет</th>
+            <th>Аудитория</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in schedule %}
+        <tr>
+            <td>{{ item.day }}</td>
+            <td>{{ item.lesson_number }}</td>
+            <td>{{ item.subject }}</td>
+            <td>{{ item.room }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
