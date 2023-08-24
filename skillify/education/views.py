@@ -94,8 +94,6 @@ def assignments_list(request, subject_id):
     return render(request, 'assignments_list.html', {'user': user, 'subject': subject, 'assignments': assignments})
 
 
-
-# views.py
 def execute_assignment(request, assignment_id):
     assignment = Assignment.objects.get(id=assignment_id)
 
@@ -133,15 +131,10 @@ def assignment_detail(request, assignment_id):
     return render(request, 'assignment_detail.html', context)
 
 
-
-
 def all_teachers(request):
     teachers = Teacher.objects.all()
     return render(request, 'teachers.html', {'teachers': teachers})
 
-# def write_to_teacher(request, teacher_id):
-#     teacher = Teacher.objects.get(id=teacher_id)
-#     return render(request, 'write_to_teacher.html', {'teacher': teacher})
 
 
 @login_required
@@ -178,11 +171,6 @@ def send_message(request, teacher_id):
 
 def message_sent(request):
     return render(request, 'message_sent.html')
-
-
-import json
-from django.shortcuts import render
-
 
 
 def schedule_view(request):

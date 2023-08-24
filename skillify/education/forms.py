@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
-from django.core.exceptions import ValidationError
-from django.contrib.auth.forms import AuthenticationForm, BaseUserCreationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 
