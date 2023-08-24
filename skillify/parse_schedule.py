@@ -1,979 +1,131 @@
-import os
-import django
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'skillify.settings')
-django.setup()
-
+import requests
 from bs4 import BeautifulSoup
-from education.models import Schedule, Subject
 
-# Пример HTML с таблицей (замените на свою таблицу)
-html = """
-<div class="content_box">
-  <h1 data-attr="title" data-guid="45071">Расписание 1 класс</h1>  <div class="html_block post"><h1><span style="color: #003366;">Расписание учебных занятий в&nbsp;I классах на II полугодие 2022/2023 учебного года</span></h1>
-<table border="2">
-<tbody>
-<tr>
-<td style="text-align: center;">
-<p><span style="color: #003366;"><strong>&nbsp;</strong></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #003366;"><strong>I А</strong></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #003366;"><strong>I Б</strong></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #003366;"><strong>I В</strong></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #003366;"><strong>I Г</strong></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #003366;"><strong>I Д</strong></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #003366;"><strong>I Е</strong></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #003366;"><strong>I Ж</strong></span></p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПН</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПН</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПН</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПН</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПН</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПН</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПН</em></span></p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>0</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>КЛ. ЧАС</p>
-</td>
-<td style="text-align: center;">
-<p>КЛ. ЧАС</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>1</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЕЛ.И МИР</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>2</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p></p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>3</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ТРУД.ОБУЧ.</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>ТРУД . ОБУЧ.</p>
-</td>
-<td style="text-align: center;">
-<p></p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>4</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ЧЕЛ.И МИР</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЕЛ. И МИР</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЕЛ. И МИР</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>5</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>КЛ. ЧАС</p>
-</td>
-<td style="text-align: center;">
-<p>КЛ. ЧАС</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>КЛ. ЧАС</p>
-</td>
-<td style="text-align: center;">
-<p>КЛ. ЧАС</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>&nbsp;</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ВТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ВТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ВТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ВТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ВТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ВТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ВТ</em></span></p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>0</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>1</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>БЕЛ. ЯЗЫК</p>
-</td>
-<td style="text-align: center;">
-<p>БЕЛ. ЯЗЫК</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>МУЗЫКА</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>БЕЛ. ЯЗЫК</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>2</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>МУЗЫКА</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>3</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>БЕЛ. ЯЗЫК</p>
-</td>
-<td style="text-align: center;">
-<p>МУЗЫКА</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>4</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>5</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>ПЗ</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>СЗ</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>&nbsp;</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;">СР</span></em></p>
-</td>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;">СР</span></em></p>
-</td>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;">СР</span></em></p>
-</td>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;">СР</span></em></p>
-</td>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;">СР</span></em></p>
-</td>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;">СР</span></em></p>
-</td>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;">СР</span></em></p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>0</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>СЗ</p>
-</td>
-<td style="text-align: center;">
-<p>СЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ПЗ</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>1</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>БЕЛ. ЯЗЫК</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>2</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>БЕЛ. ЯЗЫК</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>3</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>4</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ТРУД. ОБУЧ.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>БЕЛ. ЯЗЫК</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>5</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>СЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ПЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ПЗ</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>&nbsp;</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ЧТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ЧТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ЧТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ЧТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ЧТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ЧТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ЧТ</em></span></p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>0</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ПЗ</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>1</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЗС</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>МУЗЫКА</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>2</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>МУЗЫКА</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>3</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ФИЗ. К. И ЗД.</p>
-</td>
-<td style="text-align: center;">
-<p>МУЗЫКА</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЕЛ.И МИР</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>4</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ТРУД. ОБУЧ.</p>
-</td>
-<td style="text-align: center;">
-<p>МУЗЫКА</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЕЛ. И МИР</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ТРУД. ОБУЧ.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>5</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>ИНФ.Ч</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>&nbsp;</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПТ</em></span></p>
-</td>
-<td style="text-align: center;">
-<p><span style="color: #008080;"><em>ПТ</em></span></p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>0</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>ПЗ</p>
-</td>
-<td style="text-align: center;">
-<p>СЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>1</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ЧЗС</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧТЕНИЕ</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЕЛ.И МИР</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>2</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЗС</p>
-</td>
-<td style="text-align: center;">
-<p>ПИСЬМО</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЗС</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>3</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЗС</p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>МАТЕМ.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЗС</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>4</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>ИЗОБР. ИСК.</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-<td style="text-align: center;">
-<p>ТРУД. ОБУЧ.</p>
-</td>
-<td style="text-align: center;">
-<p>ЧЗС</p>
-</td>
-<td style="text-align: center;">
-<p>ТРУД. ОБУЧ.</p>
-</td>
-<td style="text-align: center;">
-<p>ФЗ</p>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<p><em><span style="color: #008080;"><strong>5</strong></span></em></p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-<td style="text-align: center;">
-<p>СЗ</p>
-</td>
-<td style="text-align: center;">
-<p>СЗ</p>
-</td>
-<td style="text-align: center;">
-<p>&nbsp;</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p></p></div>
+url = 'http://sch38.minsk.edu.by/ru/main.aspx?guid=2571'
+response = requests.get(url)
 
-</div>
-"""
+soup = BeautifulSoup(response.content, 'html.parser')
+
+schedule_table = soup.find_all('table')
+
+shedule_dict = dict()
+day_lessons = []
+day_lessons_11 = []
+day_lessons_10 = []
+
+days = []
+lessons = []
+class_number = '6'
+index = 0
+for table in schedule_table:
+    day = ''
+    previous_day = ''
+
+    for i, row in enumerate(table.find_all('tr')):
+        if class_number.isdigit():
+            columns = row.find_all('td')
+            if i == 1:
+                class_number = columns[2].get_text(strip=True)[0]
+                # shedule_dict['class_number'] = class_number
+                continue
+            elif i in [0, 2]:
+                continue
+            else:
+
+                lesson_number = columns[0].get_text(strip=True)
+                if lesson_number.isdigit():
+                    subject = columns[1].get_text(strip=True)
+                    room = columns[2].get_text(strip=True)
+                    # shedule_dict[class_number][day] = {'lesson_number': lesson_number, 'subject': subject, 'room': room}
+                    day_lessons.append({'class_number': class_number, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                else:
+                    day = columns[0].get_text(strip=True)
+                    lesson_number = columns[1].get_text(strip=True)
+                    subject = columns[2].get_text(strip=True)
+                    room = columns[3].get_text(strip=True)
+                    # shedule_dict[class_number]['day'] = int(day)
+                    # shedule_dict[class_number][day] = {'lesson_number': lesson_number, 'subject': subject, 'room': room}
+                    day_lessons.append({'class_number': class_number, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+
+        else:
+            for i, row in enumerate(table.find_all('tr')):
+                columns = row.find_all('td')
+                upk = 'УПК'
+                if i == 0:
+                    tenth_class = columns[2].get_text(strip=True)
+                    eleventh_class = columns[3].get_text(strip=True)
+                    # print(tenth_class, eleventh_class)
+                    continue
+
+                elif i == 1:
+                    continue
 
 
-soup = BeautifulSoup(html, 'html.parser')
-table = soup.find('table')
-rows = table.find_all('tr')[1:]
+
+                elif columns[2].get_text(strip=True) == 'УПК' or \
+                        len(columns) == 3:
+                    lesson_number = columns[0].get_text(strip=True)
+                    if lesson_number.isdigit():
+                        subject = upk
+                        room = None
+                        day_lessons_10.append({'class_number': tenth_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                        subject = columns[1].get_text(strip=True)
+                        room = columns[2].get_text(strip=True)
+                        day_lessons_11.append({'class_number': eleventh_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                    else:
+                        day = columns[0].get_text(strip=True)
+                        lesson_number = columns[1].get_text(strip=True)
+                        subject = upk
+                        room = None
+                        day_lessons_10.append({'class_number': tenth_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                        subject = columns[3].get_text(strip=True)
+                        room = columns[4].get_text(strip=True)
+                        day_lessons_11.append({'class_number': eleventh_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+
+                elif columns[-1].get_text(strip=True) == 'УПК' or \
+                        len(columns) == 3:
+                    lesson_number = columns[0].get_text(strip=True)
+                    if lesson_number.isdigit():
+                        subject = columns[1].get_text(strip=True)
+                        room = columns[2].get_text(strip=True)
+                        day_lessons_10.append({'class_number': tenth_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                        subject = upk
+                        room = None
+                        day_lessons_11.append({'class_number': eleventh_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                    else:
+                        day = columns[0].get_text(strip=True)
+                        lesson_number = columns[1].get_text(strip=True)
+                        subject = columns[2].get_text(strip=True)
+                        room = columns[3].get_text(strip=True)
+                        day_lessons_10.append({'class_number': tenth_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                        subject = upk
+                        room = None
+                        day_lessons_11.append({'class_number': eleventh_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
 
 
-for row in rows:
-    columns = row.find_all('td')
-    day_of_week = columns[0].text
-    lesson_number = columns[1].text
-    subject_name = columns[2].text
+                else:
+                    lesson_number = columns[0].get_text(strip=True)
+                    if lesson_number.isdigit():
+                        subject = columns[1].get_text(strip=True)
+                        room = columns[2].get_text(strip=True)
+                        day_lessons_10.append({'class_number': tenth_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                        subject = columns[3].get_text(strip=True)
+                        room = columns[4].get_text(strip=True)
+                        day_lessons_11.append({'class_number': eleventh_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                    else:
+                        day = columns[0].get_text(strip=True)
+                        lesson_number = columns[1].get_text(strip=True)
+                        subject = columns[2].get_text(strip=True)
+                        room = columns[3].get_text(strip=True)
+                        day_lessons_10.append({'class_number': tenth_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
+                        subject = columns[4].get_text(strip=True)
+                        room = columns[5].get_text(strip=True)
+                        day_lessons_11.append({'class_number': eleventh_class, 'day': day, 'lesson_number': lesson_number, 'subject': subject, 'room': room})
 
+print(day_lessons)
+print("================================================")
+print(day_lessons_10)
+print("================================================")
+print(day_lessons_10)
+print("================================================")
 
-    subject, created = Subject.objects.get_or_create(name=subject_name)
-
-
-    schedule_entry = Schedule.objects.create(
-        day=day_of_week,
-        lesson_number=lesson_number,
-    )
-    schedule_entry.subject.add(subject)

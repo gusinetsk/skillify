@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Отзывы о заданиях</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Задание</th>
+                <th>Оценка</th>
+                <th>Отзыв</th>
+                <th>Дата и время</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for feedback in feedbacks %}
+            <tr>
+                <td>{{ feedback.assignment.title }}</td>
+                <td>{{ feedback.grade }}</td>
+                <td>{{ feedback.content }}</td>
+                <td>{{ feedback.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

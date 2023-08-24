@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% csrf_token %}
+{% block title %}Детали задания{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card mb-4">
+        <div class="card-header" style="background-color: #C1FFC1;">
+            <h3>Детали задания</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Название задания:</strong> {{ assignment.title }}</p>
+            <p><strong>Предмет:</strong> {{ assignment.subject.name }}</p>
+            <p><strong>Класс:</strong> {{ user.grade_class.class_number }} класс</p>
+            <p><strong>Описание:</strong> {{ assignment.description }}</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" style="background-color: #C1FFC1;">
+            <h3>Отправки учеников</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ученик</th>
+                        <th>Дата и время отправки</th>
+                        <th>Ответ</th>
+                        <th>Файл</th>
+                        <th>Изображение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for submission in submissions %}
+                    <tr>
+                        <td>{{ submission.student.username }}</td>
+                        <td>{{ submission.submitted_at }}</td>
+                        <td>{{ submission.answer }}</td>
+                        <td>
+                            {% if submission.file %}
+                                <a href="{{ submission.file.url }}">Скачать</a>
+                            {% else %}
+                                Нет файла
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if submission.image %}
+                                <img src="{{ submission.image.url }}" alt="Изображение" style="max-width: 100px;">
+                            {% else %}
+                                Нет изображения
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

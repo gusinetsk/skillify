@@ -4,7 +4,6 @@
 {% block title %}Личный кабинет{% endblock %}
 
 {% block content %}
-
 <div class="container mt-4">
     <div class="card mb-4">
         <div class="card-header" style="background-color: #C1FFC1;">
@@ -38,10 +37,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for achievement in grade_achievements %}
+                    {% for achievement in achievements %}
                     <tr>
                         <td>{{ achievement.subject.name }}</td>
-                        <td>{{ achievement.total_grade }}</td>
+                        <td>
+                            {% if achievement.average_grade %}
+                                {{ achievement.average_grade|floatformat:2 }}
+                            {% else %}
+                                Нет оценок
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -49,5 +54,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

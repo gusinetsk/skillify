@@ -10,8 +10,16 @@ urlpatterns = [
     path('subjects/', views.subjects_list, name='subjects_list'),
     path('subjects/<int:subject_id>/assignments/', views.assignments_list, name='assignments_list'),
     path('teachers/', views.all_teachers, name='all_teachers'),
-    path('write_to_teacher/<int:teacher_id>/', views.write_to_teacher, name='write_to_teacher'),
-    # path('execute_assignment/<int:assignment_id>/', views.execute_assignment, name='execute_assignment'),
+    # path('write_to_teacher/<int:teacher_id>/', views.write_to_teacher, name='write_to_teacher'),
+    path('execute_assignment/<int:assignment_id>/', views.execute_assignment, name='execute_assignment'),
+    path('feedback/', views.feedback_list, name='feedback_list'),
+    path('assignment/<int:assignment_id>/', views.assignment_detail, name='assignment_detail'),
+    path('send_message/<int:teacher_id>/', views.send_message, name='send_message'),
+    path('message_sent/', views.message_sent, name='message_sent'),
+
+
+
+
 
 
 ]

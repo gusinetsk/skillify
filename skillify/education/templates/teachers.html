@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ teacher.last_name }} {{ teacher.first_name }} {{teacher.middle_name}} </h5>
                     <h6> {{teacher.subject}} </h6>
-                    <a href="{% url 'write_to_teacher' teacher.id %}" class="btn btn-primary">Написать</a>
+                    <a href="{% url 'send_message' teacher.id %}" class="btn btn-primary">Отправить сообщение</a>
                 </div>
             </div>
         </div>

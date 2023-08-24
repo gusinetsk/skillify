@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'skillify.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+#
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -88,13 +88,13 @@ WSGI_APPLICATION = 'skillify.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME",'skillify'),
-        'USER': os.environ.get("DB_USER",'skillify'),
-        'PASSWORD': os.environ.get("DB_PASSWORD",'skillify'),
+        'NAME': os.environ.get("DB_NAME",'education'),
+        'USER': os.environ.get("DB_USER",'education'),
+        'PASSWORD': os.environ.get("DB_PASSWORD",'education'),
         'HOST': os.environ.get("DB_HOST",'127.0.0.1'),
         'PORT': os.environ.get("DB_PORT",'5432'),
         "TEST": {
-            "NAME": "test_skillify",
+            "NAME": "test_education",
         },
     }
 }
@@ -151,13 +151,15 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 # settings.py
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.AllowAllUsersModelBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
 LOGIN_REDIRECT_URL = 'pupil_cabinet'
 AUTH_USER_MODEL = 'education.User'
 LOGOUT_REDIRECT_URL = 'login'
+# LOGIN_TEMPLATE = 'admin/login.html'
+
+
 
 
 

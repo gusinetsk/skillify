@@ -59,7 +59,8 @@ class User(AbstractUser):
         GradeClass,
         on_delete=models.PROTECT,
         db_column='class_number',
-        verbose_name='Номер класса'
+        verbose_name='Номер класса',
+        null=True
     )
     groups = models.ManyToManyField(
         Group,
@@ -127,14 +128,6 @@ class GradeAchievement(models.Model):
         return f"{self.user.last_name} - {self.subject.name} - {self.total_grade}"
 
 
-class Schedule(models.Model):
-    day = models.CharField(max_length=100, choices=DAY_CHOICES)
-    class_number = models.CharField(max_length=100, choices=CLASS_CHOICES,default='')
-    lesson_number = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(7)])
-    subject = models.ManyToManyField(Subject, max_length=100, choices=SUBJECTS, verbose_name='Название предмета')
-
-    def __str__(self):
-        return f"{self.day} - {self.lesson_number} - {self.subject}"
 
 
 class StudentSubmission(models.Model):
@@ -151,3 +144,18 @@ class StudentSubmission(models.Model):
 
     def __str__(self):
         return f'Отправка от {self.student.username} ({self.submitted_at})'
+
+
+class StudentMessage(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages', verbose_name='Отправитель')
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='received_messages', default='',verbose_name='Получатель')
+    subject = models.CharField(max_length=200, verbose_name='Тема сообщения')
+    message = models.TextField(verbose_name='Сообщение')
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время')
+
+    class Meta:
+        verbose_name = 'Сообщение от ученика'
+        verbose_name_plural = 'Сообщения от учеников'
+
+    def __str__(self):
+        return f"{self.sender.username} - {self.teacher} - {self.subject} "
